@@ -4,7 +4,7 @@
 
 $Connect2DB = new PDO("pgsql:host = localhost; dbname = postgres", "postgres", 'Khcd5028', array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAME utf8'));
 $readFromDB = $Connect2DB -> prepare ("SELECT * FROM Article");
-$readFromDB -> execute();
+$readFromDB -> execute( );
 $Resalt = $readFromDB -> fetchAll();
 ?>
 
@@ -21,7 +21,7 @@ $Resalt = $readFromDB -> fetchAll();
     <Table border="1" >
 
         <!--Заголовок таблицы-->
-        <caption style=" font-size:xx-large">Article</caption>
+        <caption style="font-size:xx-large">Article</caption>
 
         <!--Шапка таблицы-->
         <tr style="font-weight: bold" >
@@ -38,7 +38,7 @@ $Resalt = $readFromDB -> fetchAll();
             <td> <?php echo $item['created_at']; ?> </td>
 
             <td>
-                <a href="Update.php?id=<?php echo $item['id'];?>"> Изменить </a>
+                <a href="update.php?id=<?php echo $item['id'];?>"> Изменить </a>
                 <a href="Delete.php?id=<?php echo $item['id'];?>"> Удалить </a>
 
             </td>
@@ -49,7 +49,7 @@ $Resalt = $readFromDB -> fetchAll();
     </Table>
 
     <br>
-    <button name="create" formaction="create.php" formmethod="posr"> Добавить </button>
+    <button name="create" formaction="create.php" formmethod="post"> Добавить </button>
 
 </form>
 </body>

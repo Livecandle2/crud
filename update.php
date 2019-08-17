@@ -9,7 +9,7 @@ if (isset($Get['id']))
     $readFromDB = $Connect2DB->prepare("SELECT * FROM Article WHERE id=:IDENTITY ");
     $readFromDB->bindParam(":IDENTITY", $_GET['id']);
     $readFromDB->execute();
-    $Resalt = $readFromDB->fetch();
+    $item = $readFromDB->fetch();
 
     foreach ($Resalt as $item)
         $Title = $item['name'];
