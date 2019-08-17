@@ -6,7 +6,7 @@ if (isset($_POST['Description']) && isset($_POST['Name']) && isset($_POST['Creat
     if ($_POST['Name'] && $_POST['Description'] && $_POST['Created_at']) {
         //Проверены, чтобы все значения были заполнены
 
-        $Connect2DB = new PDO ("pgsql:host = localhost; dbname = crud", "postgres", 'Khcd5028', array(\ PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+        $Connect2DB = new PDO ("pgsql:host = localhost; dbname = postgres", "postgres", 'Khcd5028', array(\ PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
         $Create2DB = $Connect2DB -> prepare (" INSERT INTO Article (name, description, created_at) VALUES (:name, :description, :created_at )");
         $Create2DB -> bindParam(':name', $_POST['Name']);
         $Create2DB -> bindParam(':description', $_POST['Description']);
@@ -41,7 +41,7 @@ if (isset($_POST['Description']) && isset($_POST['Name']) && isset($_POST['Creat
 
         <input type="reset" value="Очистить">
 
-        <button name="chancel" formaction="Index.php"> Отменить </button>
+        <button name="chancel" formaction="create.php"> Отменить </button>
 
     </p>
 
