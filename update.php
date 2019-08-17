@@ -23,11 +23,11 @@ if(isset($_POST['id']))
             //проверяем, чтобы все значения были заполнены
 
             //апдейтим
-    $Connect2DB = new PDO ("pgsql:host = localhost; dbname = postgres", "postgres", 'Khcd5028', array(\ PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+    $Connect2DB = new PDO ("pgsql:host=localhost; dbname = postgres", "postgres", 'Khcd5028', array(\ PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
     $Update2DB = $Connect2DB ->prepare("UPDATE Article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
     $Update2DB -> bindParam(':name', $_POST['Name']);
     $Update2DB -> bindParam(':description', $_POST['Description']);
-    $Update2DB -> bindParam(':create_at', $_POST['Create_at']);
+    $Update2DB -> bindParam(':created_at', $_POST['Create_at']);
     $Update2DB -> bindParam(':id', $_POST['id']);
 
 $Resalt = $Update2DB->execute();
@@ -35,7 +35,7 @@ $Resalt = $Update2DB->execute();
 
 
         }
-        header ( "location: index.php");
+        header ( "location: read.php");
 
     exit(); //возвращаем в таблицу индекс
 }
@@ -44,7 +44,7 @@ $Resalt = $Update2DB->execute();
 <html>
 <!--Форма редактирования записи данных-->
 <head>
-    <title> <?php echo $title ?> </title>
+    <title> <?php echo '$title' ?> </title>
 
 </head>
 
@@ -62,7 +62,7 @@ $Resalt = $Update2DB->execute();
     <p>
         <input type="submit" value="Сохранить изменения">
         <input type="reset" value="Вернуть в исходное состояние">
-        <button name="chancel" formaction="index.php"> Отменить </button>
+        <button name="chancel" formaction="update.php"> Отменить </button>
         <input type="text" name="id" value="<?php echo $item['id']?>" hidden>
     </p>
 </form>
