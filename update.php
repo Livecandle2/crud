@@ -9,7 +9,7 @@ if (isset($Get['id']))
     $readFromDB = $Connect2DB->prepare("SELECT * FROM Article WHERE id=:IDENTITY ");
     $readFromDB->bindParam(":IDENTITY", $_GET['id']);
     $readFromDB->execute();
-    $Resalt = $readFromDB->fetchAll();
+    $Resalt = $readFromDB->fetch();
 
     foreach ($Resalt as $item)
         $Title = $item['name'];
@@ -44,7 +44,6 @@ $Resalt = $Update2DB->execute();
 <html>
 <!--Форма редактирования записи данных-->
 <head>
-    <title> <?php echo '$title' ?> </title>
 
 </head>
 
