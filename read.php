@@ -6,6 +6,7 @@ $Connect2DB = new PDO("pgsql:host = localhost; dbname = postgres", "postgres", '
 $readFromDB = $Connect2DB -> prepare ("SELECT * FROM Article");
 $readFromDB -> execute( );
 $Resalt = $readFromDB -> fetchAll();
+
 ?>
 
 <!--Форма отображения данных ввиде грида-->

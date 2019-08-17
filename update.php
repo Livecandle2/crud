@@ -1,70 +1,58 @@
 <?php
-//Метод Update
-if (isset($Get['id']))
-    //если вызов из другой формы методом GET
-{
-    //принимаем id - предопределяем метод Update
-    //читаем из базы и наполняем массив для заполнения формы
-    $Connect2DB = new PDO("pqsql:host=localhost; dbname=postgres", "postgres", "Khcd5028", array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-    $readFromDB = $Connect2DB->prepare("SELECT * FROM Article WHERE id=:IDENTITY ");
-    $readFromDB->bindParam(":IDENTITY", $_GET['id']);
-    $readFromDB->execute();
-    $item = $readFromDB->fetch();
+$timestamp = date('Y-m-d H:i:s', time());
+$pdo = new PDO("pgsql:host=localhost;dbname=postgres", 'postgres', 'Khcd5028');
+if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['created_at'])) {
+    $stmt = $pdo->prepare('UPDATE article SET name = :name, description = :description, created_at = :created_at WHERE id = :id');
+    $stmt->bindValue(':id', $_GET['id']);
+    $stmt->bindValue(':name', $_POST['name']);
+    $stmt->bindValue(':description', $_POST['description']);
+    $stmt->bindValue(':created_at', $_POST['created_at']);
+    $stmt->execute();
 
-    foreach ($Resalt as $item)
-        $Title = $item['name'];
+
+}
+if (isset($_GET['id'])) {
+    $stmt = $pdo->prepare('SELECT * FROM article WHERE id = :id');
+    $stmt->bindValue(':id', $_GET['id']);
+    $stmt->execute();
+    $article = $stmt->fetch();
+} else {
+    header("Location: read.php");
 }
 
-if(isset($_POST['id']))
-    {
-    //если вызов произошел из этой формы по методу Update
-    if ($_POST['Name'] && $_POST['Description'] && $_POST['Created_at'])
-        {
-            //проверяем, чтобы все значения были заполнены
 
-            //апдейтим
-    $Connect2DB = new PDO ("pgsql:host=localhost; dbname = postgres", "postgres", 'Khcd5028', array(\ PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-    $Update2DB = $Connect2DB ->prepare("UPDATE Article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
-    $Update2DB -> bindParam(':name', $_POST['Name']);
-    $Update2DB -> bindParam(':description', $_POST['Description']);
-    $Update2DB -> bindParam(':created_at', $_POST['Create_at']);
-    $Update2DB -> bindParam(':id', $_POST['id']);
-
-$Resalt = $Update2DB->execute();
-
-
-
-        }
-        header ( "location: read.php");
-
-    exit(); //возвращаем в таблицу индекс
-}
 ?>
-
 <html>
-<!--Форма редактирования записи данных-->
 <head>
 
 </head>
-
 <body>
 
-<form action="update.php" method="post" name="Update" autocomplite="on" >
-    <h1 style="font-size: x-large">Введите данные</h1>
+<table>
 
-    <p> <input type="text" name="Name" value="<?php echo ($item['name']) ?>" /> Имя </p>
+    <tr>
+        <td colspan="2"><h2>Введите новые данные </h2></td>
+    </tr>
+    <tr>
 
-    <p> <input type="text" name="Description" value="<?php echo($item['description'])?>" /> Описание </p>
+<form method="post" name="Update" autocomplite="on">
+         <td width="50px;" style="font-weight: bold"> Имя </td>
 
-    <p> <input type="date" name="Created_at" value="<?php echo($item['created_at']) ?>" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}"/> Дата создания </p>
-
-    <p>
-        <input type="submit" value="Сохранить изменения">
-        <input type="reset" value="Вернуть в исходное состояние">
-        <button name="chancel" formaction="update.php"> Отменить </button>
-        <input type="text" name="id" value="<?php echo $item['id']?>" hidden>
-    </p>
+        <td><input type="text" required name="name" placeholder="name" value="<?php echo $article['name'] ?>" </td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold"> Описание </td>
+        <td><input type="text" required name="description" placeholder="description" value="<?php echo $article['description'] ?>"></td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold"> Дата </td>
+        <td><input type="text" required name="created_at" placeholder="created_at" value="<?php echo $article['created_at'] ?>"></td>
+    </tr>
+</table>
+    <p> <input type="submit" value="Сохранить изменения">
+    <input type="reset" value="Вернуть в исходное состояние"></p>
 </form>
+
+
 </body>
 </html>
-
