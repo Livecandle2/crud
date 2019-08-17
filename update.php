@@ -7,7 +7,7 @@ if (isset($Get['id']))
     //читаем из базы и наполняем массив для заполнения формы
     $Connect2DB = new PDO("pqsql:host=localhost; dbname=postgres", "postgres", "Khcd5028", array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
     $readFromDB = $Connect2DB->prepare("SELECT * FROM Article WHERE id=:IDENTITY ");
-    $readFromDB = bindParam(":IDENTITY", $_GET['id']);
+    $readFromDB->bindParam(":IDENTITY", $_GET['id']);
     $readFromDB->execute();
     $Resalt = $readFromDB->fetchAll();
 
