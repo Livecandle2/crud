@@ -2,7 +2,7 @@
 //Метод Read
 //Формируем запрос к базе данных и результат передаем в массив
 
-$Connect2DB = new PDO("pgsql:host = localhost; dbname = postgres", "postgres", 'Khcd5028', array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAME utf8'));
+$Connect2DB = new PDO("pgsql:host = localhost; dbname = crud", "postgres", 'root', array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAME utf8'));
 $readFromDB = $Connect2DB -> prepare ("SELECT * FROM Article");
 $readFromDB -> execute();
 $Resalt = $readFromDB -> fetchAll();
