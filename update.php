@@ -1,7 +1,7 @@
 <?php
 $timestamp = date('Y-m-d H:i:s', time());
 $pdo = new PDO("pgsql:host=localhost;dbname=postgres", 'postgres', 'Khcd5028');
-if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['created_at'])) {
+if (isset($_POST['Name']) && isset($_POST['Description']) && isset($_POST['Created_at'])) {
     $stmt = $pdo->prepare('UPDATE article SET name = :name, description = :description, created_at = :created_at WHERE id = :id');
     $stmt->bindValue(':id', $_GET['id']);
     $stmt->bindValue(':name', $_POST['name']);
@@ -19,7 +19,6 @@ if (isset($_GET['id'])) {
 } else {
     header("Location: read.php");
 }
-
 
 ?>
 <html>

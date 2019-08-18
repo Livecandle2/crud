@@ -4,8 +4,8 @@
 
 $Connect2DB = new PDO("pgsql:host = localhost; dbname = postgres", "postgres", 'Khcd5028', array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAME utf8'));
 $readFromDB = $Connect2DB -> prepare ("SELECT * FROM Article");
-$readFromDB -> execute( );
-$Resalt = $readFromDB -> fetchAll();
+$readFromDB->execute( );
+$Resalt = $readFromDB->fetchAll();
 
 ?>
 
@@ -40,7 +40,7 @@ $Resalt = $readFromDB -> fetchAll();
 
             <td>
                 <a href="update.php?id=<?php echo $item['id'];?>"> Изменить </a>
-                <a href="Delete.php?id=<?php echo $item['id'];?>"> Удалить </a>
+                <a href="delete.php?id=<?php echo $item['id'];?>"> Удалить </a>
 
             </td>
 
