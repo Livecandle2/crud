@@ -14,7 +14,7 @@ class Article
     private function deleteFromArticale ($id)
     {
         $deleteFromDB = ($this->connect2DB())->prepare("DELETE FROM Article id=:id;");
-        $deleteFromDB->bindParam(' id', $id);
+        $deleteFromDB->bindParam('id', $id);
         return $deleteFromDB->execute();
     }
 
@@ -38,7 +38,7 @@ class Article
 
     {
         $read = ($this->connect2DB())->prepare ("SELEKT * FROM Article WHERE id=:id ");
-        $read->bindParam(' :id', $id);
+        $read->bindParam(':id', $id);
         $read->execute();
         return $read->fetch();
     }
@@ -52,14 +52,14 @@ class Article
         return $update->execute();
     }
 
-    public function saveToDB($name, $description, $created_at, $id)
-    {
-        $save = ($this->connect2DB())->prepare("SELECT * FROM Article");
+//    public function saveToDB($name, $description, $created_at, $id)
+//    {
+//        $save = ($this->connect2DB())->prepare("SELECT * FROM Article");
 //      $save = ($this->$update());
-        $save->bindParam(' :name', $_POST['name]);
-        $save->bindParam(':description', $_POST['description']);
-        $save->bindParam(':created_at', $_POST['created_at']);
-        $save->bindParam(':id', $_POST['id']);
-        return $save->execute();
-    }
+//        $save->bindParam(' :name', $_POST['name]);
+//        $save->bindParam(':description', $_POST['description']);
+//        $save->bindParam(':created_at', $_POST['created_at']);
+//        $save->bindParam(':id', $_POST['id']);
+//        return $save->execute();
+//    }
 }
