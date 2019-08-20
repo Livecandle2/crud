@@ -6,7 +6,7 @@ if ($_GET ['id']) {
 //    $stmt->bindValue(':id', $_GET['id']);
 //    $stmt->execute();
     $Article = new Article();
-    $Article->deleteFromArticle($_POST['Name'], $_POST['Description'], $_POST['Created_at']);
+    $Article->deleteFromArticle(':id', $_GET['id']);
     require('Article.php');
 }
 

@@ -15,13 +15,13 @@ $Article->bindParam(':description', $_POST['description']);
 $Article->bindParam(':created_at', $_POST['created_at']);
 require('Article.php');
 
-}
-if (isset($_GET['id'])) {
-    $stmt = $pdo->prepare('SELECT * FROM article WHERE id = :id');
-    $stmt->bindValue(':id', $_GET['id']);
-    $stmt->execute();
-    $article = $stmt->fetch();
-} else {
+//}
+//if (isset($_GET['id'])) {
+//    $stmt = $pdo->prepare('SELECT * FROM article WHERE id = :id');
+//    $stmt->bindValue(':id', $_GET['id']);
+//    $stmt->execute();
+//    $article = $stmt->fetch();
+//} else {
     header("Location: read.php");
 }
 
@@ -42,7 +42,7 @@ if (isset($_GET['id'])) {
 <form method="post" name="Update" autocomplite="on">
          <td width="50px;" style="font-weight: bold"> Имя </td>
 
-        <td><input type="text" required name="name" placeholder="name" value="<?php echo $article['name'] ?>" </td>
+        <td><input type="text" required name="name" placeholder="name" value="<?php echo $name['name'] ?>" </td>
     </tr>
     <tr>
         <td style="font-weight: bold"> Описание </td>

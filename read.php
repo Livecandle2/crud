@@ -9,6 +9,7 @@
 if (isset($_POST['Description']) && isset($_POST['Name']) && isset($_POST['Created_at'])) {
     $Article = new Article();
     $Article->readFromArticle();
+    $Result = $Article->readFromArticle();
     require('Article.php');
 }
 ?>
@@ -35,7 +36,7 @@ if (isset($_POST['Description']) && isset($_POST['Name']) && isset($_POST['Creat
         </tr>
         <!--Наполнение таблицы данными-->
         <?php
-        foreach ($Resalt as $item) { ?>
+        foreach ($Result as $item) { ?>
 
         <tr>
             <td> <?php echo $item['name']; ?> </td>

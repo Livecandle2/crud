@@ -7,7 +7,7 @@ class Article
 {
     private function connect2DB ()
     {
-        $connect2DB = new PDO("pgsql:hosy=localhost; dbname=postgres", "postgres", 'Khcd5028', array(\PDO::MYSQL_ARRT_INIT_COMMAND => 'SET NAME utf4'));
+        $connect2DB = new PDO("pgsql:host=localhost; dbname=postgres", "postgres", 'Khcd5028', array(\PDO::MYSQL_ARRT_INIT_COMMAND => 'SET NAME utf4'));
         return $connect2DB;
     }
 
@@ -55,7 +55,7 @@ class Article
 //    public function saveToDB($name, $description, $created_at, $id)
 //    {
 //        $save = ($this->connect2DB())->prepare("SELECT * FROM Article");
-//      $save = ($this->$update());
+//        $save = ($this->$update());
 //        $save->bindParam(' :name', $_POST['name]);
 //        $save->bindParam(':description', $_POST['description']);
 //        $save->bindParam(':created_at', $_POST['created_at']);
