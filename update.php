@@ -1,14 +1,19 @@
 <?php
 $timestamp = date('Y-m-d H:i:s', time());
-$pdo = new PDO("pgsql:host=localhost;dbname=postgres", 'postgres', 'Khcd5028');
+//$pdo = new PDO("pgsql:host=localhost;dbname=postgres", 'postgres', 'Khcd5028');
 if (isset($_POST['Name']) && isset($_POST['Description']) && isset($_POST['Created_at'])) {
-    $stmt = $pdo->prepare('UPDATE article SET name = :name, description = :description, created_at = :created_at WHERE id = :id');
-    $stmt->bindValue(':id', $_GET['id']);
-    $stmt->bindValue(':name', $_POST['name']);
-    $stmt->bindValue(':description', $_POST['description']);
-    $stmt->bindValue(':created_at', $_POST['created_at']);
-    $stmt->execute();
-
+//    $stmt = $pdo->prepare('UPDATE article SET name = :name, description = :description, created_at = :created_at WHERE id = :id');
+//    $stmt->bindValue(':id', $_GET['id']);
+//    $stmt->bindValue(':name', $_POST['name']);
+//    $stmt->bindValue(':description', $_POST['description']);
+//    $stmt->bindValue(':created_at', $_POST['created_at']);
+//    $stmt->execute();
+$Article = new Article();
+$Article->bindParam(':id', $_GET['id']);
+$Article->bindParam(':name', $_POST['name']);
+$Article->bindParam(':description', $_POST['description']);
+$Article->bindParam(':created_at', $_POST['created_at']);
+require('Article.php');
 
 }
 if (isset($_GET['id'])) {

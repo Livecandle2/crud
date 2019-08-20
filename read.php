@@ -2,11 +2,15 @@
 //Метод Read
 //Формируем запрос к базе данных и результат передаем в массив
 
-$Connect2DB = new PDO("pgsql:host = localhost; dbname = postgres", "postgres", 'Khcd5028', array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAME utf8'));
-$readFromDB = $Connect2DB -> prepare ("SELECT * FROM Article");
-$readFromDB->execute( );
-$Resalt = $readFromDB->fetchAll();
-
+//$Connect2DB = new PDO("pgsql:host = localhost; dbname = postgres", "postgres", 'Khcd5028', array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAME utf8'));
+//$readFromDB = $Connect2DB->prepare("SELECT * FROM Article");
+//$readFromDB->execute();
+//$Resalt = $readFromDB->fetchAll();
+if (isset($_POST['Description']) && isset($_POST['Name']) && isset($_POST['Created_at'])) {
+    $Article = new Article();
+    $Article->execute();
+    require('Article.php');
+}
 ?>
 
 <!--Форма отображения данных ввиде грида-->

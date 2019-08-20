@@ -6,17 +6,18 @@ if (isset($_POST['Description']) && isset($_POST['Name']) && isset($_POST['Creat
     if ($_POST['Name'] && $_POST['Description'] && $_POST['Created_at']) {
         //Проверены, чтобы все значения были заполнены
 
-        $Connect2DB = new PDO ("pgsql:host = localhost; dbname = postgres", "postgres", 'Khcd5028', array(\ PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-        $Create2DB = $Connect2DB -> prepare (" INSERT INTO Article (name, description, created_at) VALUES (:name, :description, :created_at )");
-        $Create2DB -> bindParam(':name', $_POST['Name']);
-        $Create2DB -> bindParam(':description', $_POST['Description']);
-        $Create2DB -> bindParam(':created_at', $_POST['Created_at']);
-        $Result = $Create2DB -> execute();
-
+//        $pdo = new PDO("pgsql:host = localhost; dbname = postgres", "postgres", 'Khcd5028', array(\ PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+//        $stmt = $pdo->prepare(" INSERT INTO Article (name, description, created_at) VALUES (:name, :description, :created_at )");
+//        $stmt->bindParam(':name', $_POST['Name']);
+//        $stmt->bindParam(':description', $_POST['Description']);
+//        $stmt->bindParam(':created_at', $_POST['Created_at']);
+//        $Result = $stmt->execute();
+        $Article = new Article();
+        $Article->createArticle($_POST['Name'], $_POST['Description'], $_POST['Created_at']);
+        require('Article.php');
     }
 
     header ("Location: create.php");
-    exit (); //Возвращаем в таблицу Index
 }
 ?>
 
