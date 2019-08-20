@@ -8,7 +8,7 @@
 //$Resalt = $readFromDB->fetchAll();
 if (isset($_POST['Description']) && isset($_POST['Name']) && isset($_POST['Created_at'])) {
     $Article = new Article();
-    $Article->execute();
+    $Article->readFromArticle();
     require('Article.php');
 }
 ?>
