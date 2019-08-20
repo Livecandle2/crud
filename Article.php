@@ -28,9 +28,9 @@ class Article
     public function createArticle ($name, $description, $created_at)
     {
         $create = ($this->connect2DB())->prepare("INSERT INTO Article (name, description, created_at) VALUES (:name, :description, :created_at)");
-        $create->bindParam(' :name', $name);
-        $create->bindParam(' :description', $description);
-        $create->bindparam(' :created_at', $created_at);
+        $create->bindParam(':name', $name);
+        $create->bindParam(':description', $description);
+        $create->bindparam(':created_at', $created_at);
         return $create->execute();
     }
 
@@ -45,10 +45,10 @@ class Article
     public function updateById($name, $description, $created_at, $id)
     {
         $update = ($this->connect2DB())->prepare("UPDATE Article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
-        $update->bindParam(' :name', $name);
-        $update->bindParam(' :description', $description);
-        $update->bindparam(' ;created_at', $created_at);
-        $update->bindParam(' :id', $id);
+        $update->bindParam(':name', $name);
+        $update->bindParam(':description', $description);
+        $update->bindparam(':created_at', $created_at);
+        $update->bindParam(':id', $id);
         return $update->execute();
     }
 
@@ -57,9 +57,9 @@ class Article
         $save = ($this->connect2DB())->prepare("SELECT * FROM Article");
 //      $save = ($this->$update());
         $save->bindParam(' :name', $_POST['name]);
-        $save->bindParam(' :description' $_POST['description']);
-        $save->bindPararm(' :created_at', $_POST['created_at']);
-        $save->bindParam(' :id', $_POST['id']);
+        $save->bindParam(':description', $_POST['description']);
+        $save->bindParam(':created_at', $_POST['created_at']);
+        $save->bindParam(':id', $_POST['id']);
         return $save->execute();
     }
 }
