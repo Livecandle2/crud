@@ -27,7 +27,7 @@ class Article
 
     public function createArticle ($name, $description, $created_at)
     {
-        $create = ($this->connect2DB()) ->prepare("INSERT INTO Article (name, description, created_at) VALUES (:name, :description, :created_at)");
+        $create = ($this->connect2DB())->prepare("INSERT INTO Article (name, description, created_at) VALUES (:name, :description, :created_at)");
         $create->bindParam(' :name', $name);
         $create->bindParam(' :description', $description);
         $create->bindparam(' :created_at', $created_at);
@@ -37,7 +37,7 @@ class Article
     public function readById ($id)
 
     {
-        $read = ($this ->connect2DB())->prepare ("SELEKT * FROM Article WHERE id=:id ");
+        $read = ($this->connect2DB())->prepare ("SELEKT * FROM Article WHERE id=:id ");
         $read->bindParam(' :id', $id);
         $read->execute();
         return $read->fetch();
