@@ -27,7 +27,7 @@ class Article
 
     public function createArticle ($name, $description, $created_at)
     {
-        $create = ($this->connection2DB()) ->prepare("INSERT INTO Article (name, description, created_at) VALUES (:name, :description, :created_at)");
+        $create = ($this->connect2DB()) ->prepare("INSERT INTO Article (name, description, created_at) VALUES (:name, :description, :created_at)");
         $create->bindParam(' :name', $name);
         $create->bindParam(' :description', $description);
         $create->bindparam(' :created_at', $created_at);
@@ -37,24 +37,24 @@ class Article
     public function readById ($id)
 
     {
-        $read = ($this ->$connect2DB())->prepare ("SELEKT * FROM Article WHERE id=:id ");
+        $read = ($this ->connect2DB())->prepare ("SELEKT * FROM Article WHERE id=:id ");
         $read->bindParam(' :id', $id);
         $read->execute();
         return $read->fetch();
     }
     public function updateById($name, $description, $created_at, $id)
     {
-        $update = ($this->$connect2DB())->prepare("UPDATE Article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
+        $update = ($this->connect2DB())->prepare("UPDATE Article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
         $update->bindParam(' :name', $name);
         $update->bindParam(' :description', $description);
-        $update->bindpffrm(' ;created_at', $created_at);
+        $update->bindparam(' ;created_at', $created_at);
         $update->bindParam(' :id', $id);
         return $update->execute();
     }
 
     public function saveToDB($name, $description, $created_at, $id)
     {
-        $save = ($this->$connect2DB())->prepare("SELECT * FROM Article");
+        $save = ($this->connect2DB())->prepare("SELECT * FROM Article");
 //      $save = ($this->$update());
         $save->bindParam(' :name', $_POST['name]);
         $save->bindParam(' :description' $_POST['description']);
